@@ -48,11 +48,11 @@ Navigation is handled by a simple waypoint controller: steer toward the next tar
 
 Below are three runs with identical trajectories and identical sensor noise with different tuning parameters.
 
-{% include image-gallery.html images="EKFGoodTune.gif, EKFOverTrust.gif, EKFUnderTrust.gif" height="400" %}
+{% include image-gallery.html images="ekf_default.gif, ekf_measurement.gif, ekf_model.gif" height="400" %}
 
-- **Well-tuned**: the estimate tracks the true trajectory closely, smoothing sensor noise without lagging behind real motion
-- **Over-trusting measurements** (R too low): the estimate jitters, reacting too strongly to noisy GPS readings instead of smoothing them
-- **Under-trusting measurements** (R too high): the estimate lags and drifts, relying too heavily on the motion model and slow to correct against GPS
+- **Well-tuned**: the estimate tracks the true trajectory closely with little variance, smoothing sensor noise without lagging behind real motion. There is some noise, but the robot follows a smooth trajectory to the endpoint.
+- **Over-trusting measurements** (R too low): the estimate jitters, and the robot follows the GPS noise. This causes the robot to get off-course.
+- **Under-trusting measurements** (R too high): the estimate lags and drifts, relying too heavily on the motion model and slow to correct against GPS. This causes the robot to drift off course slowly. The EKF estimate variance is high.
 
 
 ### **Conclusion**
